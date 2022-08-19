@@ -74,18 +74,32 @@
 
 // x.value = 20;
 
-let number = 10;
-let obj = { value: 10 };
+// //Value vs Reference
+// let number = 10;
+// let obj = { value: 10 };
 
-function increase(number) {
-  number++;
+// function increase(number) {
+//   number++;
+// }
+// function increaseObj(obj) {
+//   obj.value++;
+// }
+
+// increase(number);
+// increaseObj(obj);
+
+// console.log(number);
+// console.log(obj);
+
+//Adding or removing properties
+function Circle(radius) {
+  this.radius = radius;
+  this.draw = function () {
+    console.log('draw');
+  };
 }
-function increaseObj(obj) {
-  obj.value++;
-}
 
-increase(number);
-increaseObj(obj);
+const circle = new Circle(10);
 
-console.log(number);
-console.log(obj);
+circle.location = { x: 1 };
+circle['location'] = { x: 1 };
