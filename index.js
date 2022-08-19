@@ -61,3 +61,31 @@
 // // another2.draw();
 // const another3 = Circle.apply({}, [1]);
 // // another3.draw();
+
+// independent values
+// let x = 10;
+// let y = x;
+
+// x = 20;
+
+// //References behave differently
+// let x = { value: 10 };
+// let y = x;
+
+// x.value = 20;
+
+let number = 10;
+let obj = { value: 10 };
+
+function increase(number) {
+  number++;
+}
+function increaseObj(obj) {
+  obj.value++;
+}
+
+increase(number);
+increaseObj(obj);
+
+console.log(number);
+console.log(obj);
