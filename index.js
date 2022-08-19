@@ -91,24 +91,53 @@
 // console.log(number);
 // console.log(obj);
 
-//Adding or removing properties
+// //Adding or removing properties
+// function Circle(radius) {
+//   this.radius = radius;
+//   this.draw = function () {
+//     console.log('draw');
+//   };
+// }
+
+// const circle = new Circle(10);
+
+// circle.location = { x: 1 };
+// circle['location'] = { x: 1 };
+
+// for (let key in circle) {
+//   if (typeof circle[key] !== 'function') console.log(key, circle[key]);
+// }
+
+// const keys = Object.keys(circle);
+// console.log(keys);
+
+// if ('radius' in circle) console.log('Circle has a radius.');
+
+// //public methods and properties
+// function Circle(radius) {
+//   this.radius = radius;
+//   this.defaultLocation = { x: 0, y: 0 };
+//   this.computeOptimumLocation = function () {
+//     //...
+//   };
+//   this.draw = function () {
+//     this.computeOptimumLocation();
+//     console.log('draw');
+//   };
+// }
+
+//privatized methods and properties
 function Circle(radius) {
   this.radius = radius;
+  let defaultLocation = { x: 0, y: 0 };
+  let computeOptimumLocation = function () {
+    //...
+  };
   this.draw = function () {
+    computeOptimumLocation();
     console.log('draw');
   };
 }
 
 const circle = new Circle(10);
-
-circle.location = { x: 1 };
-circle['location'] = { x: 1 };
-
-for (let key in circle) {
-  if (typeof circle[key] !== 'function') console.log(key, circle[key]);
-}
-
-const keys = Object.keys(circle);
-console.log(keys);
-
-if ('radius' in circle) console.log('Circle has a radius.');
+ circle.
