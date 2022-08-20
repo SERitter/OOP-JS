@@ -89,38 +89,79 @@
 
 // for (let shape of shapes) shape.duplicate();
 
-function mixin(target, ...sources) {
-  Object.assign(target, ...sources);
+// function mixin(target, ...sources) {
+//   Object.assign(target, ...sources);
+// }
+
+// const canEat = {
+//   eat: function () {
+//     this.hunger--;
+//     console.log('eating');
+//   },
+// };
+
+// const canWalk = {
+//   walk: function () {
+//     console.log('walking');
+//   },
+// };
+
+// const canSwim = {
+//   swim: function () {
+//     console.log('swim');
+//   },
+// };
+
+// function Person() {}
+// mixin(Person.prototype, canEat, canWalk);
+
+// const person = new Person();
+// console.log(person);
+
+// function Goldfish() {}
+
+// mixin(Goldfish.prototype, canEat, canSwim);
+
+// const goldfish = new Goldfish();
+// console.log(goldfish);
+
+// Exercise Prototypical Inheritance
+// Design two objects,
+// HtmlElement
+// HtmlSelectElement - represents drop down list
+
+// Prototypical inheritance, htmlElement is the parent, HtmlSelectElement is the child
+
+function HtmlElement() {
+  this.click = function () {
+    console.log('clicked');
+  };
 }
 
-const canEat = {
-  eat: function () {
-    this.hunger--;
-    console.log('eating');
-  },
+HtmlElement.prototype.focus = function () {
+  console.log('focused');
 };
 
-const canWalk = {
-  walk: function () {
-    console.log('walking');
-  },
-};
+function HtmlSelectElement(items = []) {
+  this.items = items;
 
-const canSwim = {
-  swim: function () {
-    console.log('swim');
-  },
-};
+  this.addItem = function (value) {
+    this.items.push(value);
+  };
 
-function Person() {}
-mixin(Person.prototype, canEat, canWalk);
+  this.removeItem = function (value) {
+    this.items.splice(this.items.indexOf(value), 1);
+  };
+}
 
-const person = new Person();
-console.log(person);
+HtmlSelectElement.prototype = new HtmlElement();
+// HtmlSelectElement.constructor = HtmlSelectElement;
 
-function Goldfish() {}
+const e = new HtmlElement();
+//should have one method - click()
+//its prototype should have = focus()
 
-mixin(Goldfish.prototype, canEat, canSwim);
-
-const goldfish = new Goldfish();
-console.log(goldfish);
+const s = new HtmlSelectElement();
+// can be initialized with an array, if no arguments provided initialize with an empty array
+// s.addItem
+// s.removeItem
