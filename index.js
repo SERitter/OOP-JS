@@ -132,6 +132,51 @@
 
 // Prototypical inheritance, htmlElement is the parent, HtmlSelectElement is the child
 
+// function HtmlElement() {
+//   this.click = function () {
+//     console.log('clicked');
+//   };
+// }
+
+// HtmlElement.prototype.focus = function () {
+//   console.log('focused');
+// };
+
+// function HtmlSelectElement(items = []) {
+//   this.items = items;
+
+//   this.addItem = function (value) {
+//     this.items.push(value);
+//   };
+
+//   this.removeItem = function (value) {
+//     this.items.splice(this.items.indexOf(value), 1);
+//   };
+// }
+
+// HtmlSelectElement.prototype = new HtmlElement();
+// // HtmlSelectElement.constructor = HtmlSelectElement;
+
+// const e = new HtmlElement();
+// //should have one method - click()
+// //its prototype should have = focus()
+
+// const s = new HtmlSelectElement();
+// can be initialized with an array, if no arguments provided initialize with an empty array
+// s.addItem
+// s.removeItem
+
+// Exervcise 2
+// Extend htmlSelectElement with a render method
+// s.render should log each item as an option
+/*
+  <select>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+  </select>
+*/
+
 function HtmlElement() {
   this.click = function () {
     console.log('clicked');
@@ -152,16 +197,34 @@ function HtmlSelectElement(items = []) {
   this.removeItem = function (value) {
     this.items.splice(this.items.indexOf(value), 1);
   };
+
+  this.render = function () {
+    let output = '<select>\n';
+    for (item of items) {
+      output += '\t<option>' + item + '</option>\n';
+    }
+    output += '</select>';
+    return output;
+  };
 }
 
 HtmlSelectElement.prototype = new HtmlElement();
-// HtmlSelectElement.constructor = HtmlSelectElement;
+
+function HtmlImageElement(src) {
+  this.src = src;
+  this.render = function () {
+    return '<img src="' + src + '" />';
+  };
+}
+
+HtmlImageElement.prototype = new HtmlElement();
 
 const e = new HtmlElement();
-//should have one method - click()
-//its prototype should have = focus()
 
-const s = new HtmlSelectElement();
-// can be initialized with an array, if no arguments provided initialize with an empty array
-// s.addItem
-// s.removeItem
+const s = new HtmlSelectElement([1, 2, 3]);
+
+const i1 = new HtmlImageElement('https://');
+
+const elements = [new HtmlSelectElement([1, 2, 3]), new HtmlImageElement('https://')];
+
+for (element of elements) console.log(element.render());
